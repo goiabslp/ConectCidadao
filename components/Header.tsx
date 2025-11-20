@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Landmark, LockKeyhole } from 'lucide-react';
+import logo from '../images/logo.svg';
 
 interface HeaderProps {
   onGoHome: () => void;
@@ -17,10 +18,9 @@ export const Header: React.FC<HeaderProps> = ({ onGoHome, onAdminClick }) => {
           onClick={onGoHome}
         >
           {/* Logo da Prefeitura - São José do Goiabal */}
-          {/* To use local image locally: import Logo from '../images/logo.png' and src={Logo} */}
           {!imgError ? (
             <img 
-              src="https://drive.google.com/uc?export=view&id=1pqmRSZ3g_FFEdumoO3jChkpGqlmW9Wq3" 
+              src={logo}
               alt="Brasão de São José do Goiabal" 
               className="w-16 h-16 object-contain drop-shadow-md group-hover:scale-105 transition-transform"
               onError={() => setImgError(true)}
