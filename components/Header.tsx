@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Landmark, LockKeyhole } from 'lucide-react';
-import logo from '../images/logo.png';
 
 interface HeaderProps {
   onGoHome: () => void;
@@ -13,15 +12,12 @@ export const Header: React.FC<HeaderProps> = ({ onGoHome, onAdminClick }) => {
   return (
     <header className="bg-gradient-to-r from-green-600 via-blue-600 to-yellow-500 shadow-lg sticky top-0 z-50">
       <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div 
-          className="flex items-center space-x-4 cursor-pointer group" 
-          onClick={onGoHome}
-        >
-          {/* Logo da Prefeitura - São José do Goiabal */}
+        <div className="flex items-center space-x-4 cursor-pointer group" onClick={onGoHome}>
+          {/* Logo da Prefeitura */}
           {!imgError ? (
-            <img 
-              src={logo}
-              alt="Brasão de São José do Goiabal" 
+            <img
+              src="/images/logo.png"  // Caminho público absoluto
+              alt="Logo da Prefeitura"
               className="w-16 h-16 object-contain drop-shadow-md group-hover:scale-105 transition-transform"
               onError={() => setImgError(true)}
             />
@@ -30,13 +26,16 @@ export const Header: React.FC<HeaderProps> = ({ onGoHome, onAdminClick }) => {
               <Landmark size={28} />
             </div>
           )}
+
           <div>
-            <h1 className="text-xl font-extrabold text-white leading-none tracking-tight drop-shadow-sm">SÃO JOSÉ DO GOIABAL</h1>
+            <h1 className="text-xl font-extrabold text-white leading-none tracking-tight drop-shadow-sm">
+              SÃO JOSÉ DO GOIABAL
+            </h1>
             <p className="text-xs text-white/90 font-medium mt-1">Cidadão Conectado</p>
           </div>
         </div>
 
-        <button 
+        <button
           onClick={onAdminClick}
           className="p-2 text-white/80 hover:text-white hover:bg-white/20 rounded-full transition-colors"
           title="Acesso Administrativo"
