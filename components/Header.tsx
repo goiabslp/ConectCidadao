@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Landmark, LockKeyhole } from 'lucide-react';
-import logo from '../images/logo.svg';
+import logo from '../images/logo.png';
 
 interface HeaderProps {
   onGoHome: () => void;
