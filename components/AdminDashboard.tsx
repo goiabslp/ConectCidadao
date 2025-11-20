@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { Report, ReportStatus, User, UserRole, Sector, ServiceOption, ReportFormData, AIAnalysisResult } from '../types';
 import { SectorGrid, ServiceList, SuccessScreen } from './CitizenComponents';
@@ -746,12 +745,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // --- VIEW: LOGIN SCREEN ---
   if (!currentUser) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] p-4 animate-fade-in bg-gray-50">
-        <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full border border-gray-200">
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 animate-fade-in bg-gradient-to-br from-green-600 via-blue-600 to-yellow-500">
+        <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-md w-full border border-white/20">
           <div className="flex justify-center mb-6">
-            <div className="bg-slate-800 p-4 rounded-full shadow-lg">
-              <Shield className="text-white" size={32} />
-            </div>
+            <img 
+              src="/images/logo1.png" 
+              alt="Portal Administrativo" 
+              className="w-24 h-24 object-contain drop-shadow-lg"
+            />
           </div>
           <h2 className="text-2xl font-bold text-center text-slate-800 mb-2">Portal Administrativo</h2>
           <p className="text-center text-slate-500 mb-6 text-sm">Acesso restrito a servidores.</p>
@@ -786,7 +787,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             </div>
             <button 
               type="submit"
-              className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-lg transition shadow-md hover:shadow-lg transform active:scale-[0.99]"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-md hover:shadow-lg transform active:scale-[0.99]"
             >
               Entrar no Sistema
             </button>
