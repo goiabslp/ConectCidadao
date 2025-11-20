@@ -1,7 +1,6 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { AIAnalysisResult } from '../types';
 
-// Initialize Gemini Client
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const analyzeReport = async (description: string, serviceName: string): Promise<AIAnalysisResult> => {
