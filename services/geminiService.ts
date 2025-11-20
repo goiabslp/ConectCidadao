@@ -1,42 +1,31 @@
-import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { AIAnalysisResult } from '../types';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// A chave de API foi removida do front-end por segurança.
+// A lógica foi movida para api/gemini.ts (Serverless Function).
 
 export const analyzeReport = async (description: string, serviceName: string): Promise<AIAnalysisResult> => {
   try {
-    const schema: Schema = {
-      type: Type.OBJECT,
-      properties: {
-        summary: { type: Type.STRING, description: "A professional, short title/summary of the issue for the admin dashboard." },
-        urgency: { type: Type.STRING, enum: ["Baixa", "Média", "Alta"], description: "Estimated urgency based on keywords (e.g., 'risk', 'danger', 'blocked')." },
-        category: { type: Type.STRING, description: "A verified technical category for the issue." },
-        isClear: { type: Type.BOOLEAN, description: "True if the description is understandable, False if it's gibberish." }
+    const response = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      required: ["summary", "urgency", "category", "isClear"]
-    };
-
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: `Analise a seguinte solicitação de um cidadão para a prefeitura.
-      Serviço Selecionado: ${serviceName}
-      Descrição do Cidadão: "${description}"
-      
-      Retorne um JSON classificando essa demanda.`,
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: schema,
-      }
+      body: JSON.stringify({
+        description,
+        serviceName
+      }),
     });
 
-    const text = response.text;
-    if (!text) throw new Error("No response from AI");
-    
-    return JSON.parse(text) as AIAnalysisResult;
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data as AIAnalysisResult;
 
   } catch (error) {
-    console.error("Gemini Analysis Error:", error);
-    // Fallback in case of error
+    console.error("API Request Error:", error);
+    // Fallback in case of server error
     return {
       summary: "Análise indisponível",
       urgency: "Média",
