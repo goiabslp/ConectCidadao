@@ -746,12 +746,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   if (!currentUser) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4 animate-fade-in bg-gradient-to-br from-green-600 via-blue-600 to-yellow-500">
-        <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-md w-full border border-white/20">
+        <div className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl max-w-md w-full border border-white/20">
           <div className="flex justify-center mb-6">
             <img 
               src="/images/logo1.png" 
               alt="Portal Administrativo" 
-              className="w-24 h-24 object-contain drop-shadow-lg"
+              className="w-auto h-24 object-contain drop-shadow-lg"
             />
           </div>
           <h2 className="text-2xl font-bold text-center text-slate-800 mb-2">Portal Administrativo</h2>
@@ -770,7 +770,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 type="text" 
                 value={loginCpf}
                 onChange={(e) => setLoginCpf(formatCPF(e.target.value))}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none transition"
                 placeholder="000.000.000-00"
                 maxLength={14}
               />
@@ -781,13 +781,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 type="password" 
                 value={loginPass}
                 onChange={(e) => setLoginPass(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none transition"
                 placeholder="••••••••"
               />
             </div>
             <button 
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-md hover:shadow-lg transform active:scale-[0.99]"
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all shadow-lg hover:shadow-xl transform active:scale-[0.99]"
             >
               Entrar no Sistema
             </button>
