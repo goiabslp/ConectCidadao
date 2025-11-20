@@ -1,9 +1,9 @@
-import { GoogleGenAI, Type, Schema } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 
 // Configuração para o Vercel
 export default async function handler(req: any, res: any) {
   // Habilita CORS para testes locais se necessário, embora no Vercel seja mesma origem
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader(
@@ -27,15 +27,9 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'Missing description or serviceName' });
     }
 
-    const apiKey = process.env.VITE_API_KEY;
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-    if (!apiKey) {
-      return res.status(500).json({ error: 'Server API Key configuration missing' });
-    }
-
-    const ai = new GoogleGenAI({ apiKey });
-
-    const schema: Schema = {
+    const schema = {
       type: Type.OBJECT,
       properties: {
         summary: { type: Type.STRING, description: "A professional, short title/summary of the issue for the admin dashboard." },
