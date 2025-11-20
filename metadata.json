@@ -1,0 +1,9 @@
+{
+  "name": "Cidadão Conectado",
+  "description": "Aplicativo oficial para envio de solicitações e demandas de serviços municipais.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
